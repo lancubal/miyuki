@@ -6,7 +6,7 @@ export abstract class Content {
     public name: string,
     public description?: string,
     public locale?: Locale,
-  ) {}
+  ) { }
 
   public toResource(): Record<string, unknown> {
     return {

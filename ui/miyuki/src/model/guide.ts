@@ -57,7 +57,7 @@ export abstract class Exercise {
     public name?: string,
     public description?: string,
     public tagList: string[] = []
-  ) {}
+  ) { }
 
   previous(): Exercise | undefined {
     return this.guide.exercises.find(e => e.number === this.number - 1);
@@ -81,6 +81,11 @@ export abstract class Exercise {
         ? this.language.toEmbeddedResource()
         : undefined
     };
+  }
+
+  static fromResource(resource: Record<string, unknown>) {
+    
+
   }
 
   abstract solvable(): boolean;
