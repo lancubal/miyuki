@@ -2,20 +2,23 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Lesson from "./Lesson"
 import Exercise from "./Exercise"
+import Book from './Book';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/index.html" element={<Lesson />} />
-        <Route path="/" element={<Lesson />} />
-        {/* <Route path="/chapter/:chapterId" element={<Chapter />} /> */}
-        <Route path="/lesson/:lessonId" element={<Lesson />} />
-        <Route path="/exercise/:exerciseId" element={<Exercise />} />
+        {/* TODO doesn't work */}
+        <Route path="/index.html" element={<Book />} />
+
+        <Route path="/" element={<Book />} />
+        {/* <Route path="/chapters/:chapterId" element={<Chapter />} /> */}
+        {/* <Route path="/chapters/:chapterId/appendix" element={<Appendix />} /> */}
+        <Route path="/lessons/:lessonId" element={<Lesson />} />
+        <Route path="/exercises/:exerciseId" element={<Exercise />} />
+        {/* <Route path="/faqs" element={<Faqs />} /> */}
       </Routes>
     </BrowserRouter>
   );
 }
-
-
 export default App;

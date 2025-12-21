@@ -2,6 +2,7 @@ import { Locale, Slug } from "./common";
 
 export abstract class Content {
   constructor(
+    public readonly id: number,
     public readonly slug: Slug,
     public name: string,
     public description?: string,

@@ -11,13 +11,14 @@ export class Guide extends Content {
   public exercises: Exercise[] = [];
 
   constructor(
+    id: number,
     slug: Slug,
     name: string,
     public readonly type: GuideType,
     public language: Language,
     description?: string
   ) {
-    super(slug, name, description);
+    super(id, slug, name, description);
   }
 
   get exercisesCount(): number {
