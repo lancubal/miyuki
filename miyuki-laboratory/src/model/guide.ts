@@ -84,8 +84,7 @@ export abstract class Exercise {
   }
 
   static fromResource(resource: Record<string, unknown>) {
-    
-
+    // TODO import from guide json
   }
 
   abstract solvable(): boolean;
