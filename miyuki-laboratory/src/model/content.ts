@@ -9,13 +9,18 @@ export abstract class Content {
     public locale?: Locale,
   ) { }
 
-  public toResource(): Record<string, unknown> {
+  toResource(): Record<string, unknown> {
     return {
       slug: this.slug,
       name: this.name,
       description: this.description,
       locale: this.locale
     };
+  }
+
+  get descriptionHtml(): string {
+    // TODO convert from markdown here
+    return this.description ?? ""
   }
 
 }

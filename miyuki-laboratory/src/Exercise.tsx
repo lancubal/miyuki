@@ -132,7 +132,7 @@ const Exercise: React.FC = () => {
           4. Programación Funcional
         </a>
         <span>/</span>
-        <Link to="/lesson/1" className="hover:underline">1. Valores y Funciones</Link>
+        <Link to="/lessons/1" className="hover:underline">1. Valores y Funciones</Link>
         <span>/</span>
         <span className="text-gray-700">
           8. Múltiples parámetros

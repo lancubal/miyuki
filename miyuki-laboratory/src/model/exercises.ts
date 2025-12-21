@@ -3,12 +3,13 @@ import { Language } from "./language";
 
 export abstract class Challenge extends Exercise {
   constructor(
+    id: number,
     bibliothecaId: string,
     guide: Guide,
     language: Language,
     public layout: string
   ) {
-    super(bibliothecaId, guide, language);
+    super(id, bibliothecaId, guide, language);
   }
 
   abstract console(): boolean;
@@ -16,6 +17,7 @@ export abstract class Challenge extends Exercise {
 
 export class Problem extends Challenge {
   constructor(
+    id: number,
     bibliothecaId: string,
     guide: Guide,
     language: Language,
@@ -24,7 +26,7 @@ export class Problem extends Challenge {
     public test?: string,
     public manualEvaluation: boolean = false
   ) {
-    super(bibliothecaId, guide, language, layout);
+    super(id, bibliothecaId, guide, language, layout);
   }
 
   console(): boolean {
@@ -56,13 +58,14 @@ export class Playground extends Challenge {
 
 export class Interactive extends Challenge {
   constructor(
+    id: number,
     bibliothecaId: string,
     guide: Guide,
     language: Language,
     layout: string,
     public goal?: string
   ) {
-    super(bibliothecaId, guide, language, layout);
+    super(id, bibliothecaId, guide, language, layout);
   }
 
   solvable(): boolean {

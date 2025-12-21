@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Lesson from "./Lesson"
 import Exercise from "./Exercise"
 import Book from './Book';
+import Chapter from './Chapter';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path="/index.html" element={<Book />} />
 
         <Route path="/" element={<Book />} />
-        {/* <Route path="/chapters/:chapterId" element={<Chapter />} /> */}
+        <Route path="/chapters/:chapterId" element={<Chapter />} />
         {/* <Route path="/chapters/:chapterId/appendix" element={<Appendix />} /> */}
         <Route path="/lessons/:lessonId" element={<Lesson />} />
         <Route path="/exercises/:exerciseId" element={<Exercise />} />

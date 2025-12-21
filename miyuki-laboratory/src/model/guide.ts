@@ -1,6 +1,6 @@
-import { Slug } from "./common";
-import { Content } from "./content";
-import { Language } from "./language";
+import { Slug } from "./common"
+import { Content } from "./content"
+import { Language } from "./language"
 
 export enum GuideType {
   Learning = "learning",
@@ -8,7 +8,7 @@ export enum GuideType {
 }
 
 export class Guide extends Content {
-  public exercises: Exercise[] = [];
+  public exercises: Exercise[] = []
 
   constructor(
     id: number,
@@ -18,23 +18,23 @@ export class Guide extends Content {
     public language: Language,
     description?: string
   ) {
-    super(id, slug, name, description);
+    super(id, slug, name, description)
   }
 
   get exercisesCount(): number {
-    return this.exercises.length;
+    return this.exercises.length
   }
 
   firstExercise(): Exercise | undefined {
-    return this.exercises[0];
+    return this.exercises[0]
   }
 
   locateExercise(bibliothecaId: string): Exercise {
-    const found = this.exercises.find(e => e.bibliothecaId === bibliothecaId);
+    const found = this.exercises.find(e => e.bibliothecaId === bibliothecaId)
     if (!found) {
-      throw new Error(`Exercise ${bibliothecaId} not found in guide ${this.slug}`);
+      throw new Error(`Exercise ${bibliothecaId} not found in guide ${this.slug}`)
     }
-    return found;
+    return found
   }
 
   toExpandedResource(): Record<string, unknown> {
@@ -43,13 +43,12 @@ export class Guide extends Content {
       type: this.type,
       language: this.language.toEmbeddedResource(),
       exercises: this.exercises.map(e => e.toResource())
-    };
+    }
   }
 }
 
-
 export abstract class Exercise {
-  public number!: number;
+  public number!: number
 
   protected constructor(
     public id: number,
@@ -62,15 +61,15 @@ export abstract class Exercise {
   ) { }
 
   previous(): Exercise | undefined {
-    return this.guide.exercises.find(e => e.number === this.number - 1);
+    return this.guide.exercises.find(e => e.number === this.number - 1)
   }
 
   next(): Exercise | undefined {
-    return this.guide.exercises.find(e => e.number === this.number + 1);
+    return this.guide.exercises.find(e => e.number === this.number + 1)
   }
 
   searchTags(): string[] {
-    return [this.language.name, ...this.tagList];
+    return [this.language.name, ...this.tagList]
   }
 
   toResource(): Record<string, unknown> {
@@ -82,12 +81,12 @@ export abstract class Exercise {
       language: this.language !== this.guide.language
         ? this.language.toEmbeddedResource()
         : undefined
-    };
+    }
   }
 
   static fromResource(resource: Record<string, unknown>) {
     // TODO import from guide json
   }
 
-  abstract solvable(): boolean;
+  abstract solvable(): boolean
 }

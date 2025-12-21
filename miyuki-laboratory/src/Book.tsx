@@ -9,28 +9,28 @@ const chapters: Partial<Topic>[] = [
     name: "Programación Funcional",
     description:
       "El paradigma funcional es de los más antiguos, pero también de los más simples y poderosos. Si querés aprender a dominar el mundo con nada, utilizando Haskell, seguí por acá.",
-    image: "https://mumuki.io/static/for_content/capitulo3-01.svg",
+    imageUrl: "https://mumuki.io/static/for_content/capitulo3-01.svg",
   },
   {
     id: 2,
     name: "Programación Lógica",
     description:
       "¿Querés aprender a programar describiendo el mundo y enseñando reglas a la computadora? Aprendamos Prolog.",
-    image: "https://mumuki.io/static/for_content/capitulo4-01.svg",
+    imageUrl: "https://mumuki.io/static/for_content/capitulo4-01.svg",
   },
   {
     id: 3,
     name: "Programación con Objetos",
     description:
       "Modelá la realidad con objetos que se comunican intercambiando mensajes. ¡Conozcamos Wollok!",
-    image: "https://mumuki.io/static/for_content/capitulo5-01.svg",
+    imageUrl: "https://mumuki.io/static/for_content/capitulo5-01.svg",
   },
   {
     id: 4,
     name: "Control de versiones",
     description:
       "Aprendamos a manejar archivos y versiones con Bash y Git.",
-    image: "https://mumuki.io/static/for_content/capitulo11-01.svg",
+    imageUrl: "https://mumuki.io/static/for_content/capitulo11-01.svg",
   },
 ];
 
@@ -93,7 +93,7 @@ const Book: React.FC = () => {
 
                 <div className="flex gap-4">
                   <img
-                    src={chapter.image}
+                    src={chapter.imageUrl}
                     alt=""
                     className="h-20 w-20 object-contain"
                   />

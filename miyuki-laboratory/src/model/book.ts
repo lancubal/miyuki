@@ -1,11 +1,18 @@
-import { Content } from "./content";
 import { Topic } from "./topic";
+import { Content } from "./content"
 
 export class Book extends Content {
-  // TODO add organization
-  public chapters: Topic[] = [];
+  public chapters: Chapter[] = []
 
-  firstChapter(): Topic | undefined {
-    return this.chapters[0];
+  firstChapter(): Chapter | undefined {
+    return this.chapters[0]
   }
+}
+
+export class Chapter {
+  constructor(
+    public readonly topic: Topic,
+    public readonly book: Book,
+    public readonly number: number
+  ) { }
 }
