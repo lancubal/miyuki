@@ -7,21 +7,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/index.html" element={<Lesson />} />
         <Route path="/" element={<Lesson />} />
+        {/* <Route path="/chapter/:chapterId" element={<Chapter />} /> */}
         <Route path="/lesson/:lessonId" element={<Lesson />} />
         <Route path="/exercise/:exerciseId" element={<Exercise />} />
       </Routes>
     </BrowserRouter>
   );
 }
-
-
-// ---------- Router Setup (example) ----------
-// In your App.tsx or router file:
-//
-
-//
-
 
 
 export default App;
