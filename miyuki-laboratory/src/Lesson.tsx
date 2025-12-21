@@ -2,42 +2,32 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
+import { Exercise } from "./model/guide";
+import { SubmissionStatus } from "./model/submission";
+import { statusIcon } from "./helpers/statusIcon";
 
-type ExerciseStatus = "passed" | "failed" | "pending"
 
-interface LessonExercise {
-  id: number
-  title: string
-  status: ExerciseStatus
-}
-
-const exercises: LessonExercise[] = [
-  { id: 1, title: "Paradigmas... ¿para qué?", status: "pending" },
-  { id: 2, title: "Los números", status: "pending" },
-  { id: 3, title: "Valores y variables", status: "pending" },
-  { id: 4, title: "Más valores", status: "pending" },
-  { id: 5, title: "Las Funciones", status: "pending" },
-  { id: 6, title: "Más funciones", status: "pending" },
-  { id: 7, title: "Los booleanos", status: "pending" },
-  { id: 8, title: "Múltiples parámetros", status: "failed" },
-  { id: 9, title: "Triángulos", status: "passed" },
-  { id: 10, title: "Combinando funciones", status: "pending" },
-  { id: 11, title: "Composición", status: "pending" },
-  { id: 12, title: "Más composición", status: "pending" },
-  { id: 13, title: "Los operadores son funciones", status: "pending" },
-  { id: 14, title: '"Juguemos con strings"', status: "pending" },
+const exercises: Partial<Exercise>[] = [
+  { id: 1, name: "Paradigmas... ¿para qué?" },
+  { id: 2, name: "Los números" },
+  { id: 3, name: "Valores y variables" },
+  { id: 4, name: "Más valores" },
+  { id: 5, name: "Las Funciones" },
+  { id: 6, name: "Más funciones" },
+  { id: 7, name: "Los booleanos" },
+  { id: 8, name: "Múltiples parámetros" },
+  { id: 9, name: "Triángulos" },
+  { id: 10, name: "Combinando funciones" },
+  { id: 11, name: "Composición" },
+  { id: 12, name: "Más composición" },
+  { id: 13, name: "Los operadores son funciones" },
+  { id: 14, name: '"Juguemos con strings"' },
 ];
 
-const statusIcon = (status: ExerciseStatus) => {
-  switch (status) {
-    case "passed":
-      return "text-green-500";
-    case "failed":
-      return "text-red-500";
-    default:
-      return "text-gray-400";
-  }
-};
+function statusFor(_exercise: Partial<Exercise>): SubmissionStatus {
+  // TODO read from local storage. may use code from laboratory
+  return SubmissionStatus.Pending
+}
 
 const Lesson: React.FC = () => {
   return (
@@ -82,14 +72,14 @@ const Lesson: React.FC = () => {
       {/* Exercises */}
       <h2 className="text-2xl font-semibold mb-4">Ejercicios</h2>
       <ul className="space-y-2 mb-8">
-        {exercises.map((ex) => (
-          <li key={ex.id} className="flex items-center gap-2">
-            <span className={`text-lg ${statusIcon(ex.status)}`}>●</span>
+        {exercises.map((exercise) => (
+          <li key={exercise.id} className="flex items-center gap-2">
+            <span className={`text-lg ${statusIcon(statusFor(exercise))}`}>●</span>
             <Link
-              to={`/exercise/${ex.id}`}
+              to={`/exercises/${exercise.id}`}
               className="text-blue-600 hover:underline"
             >
-              {ex.id}. {ex.title}
+              {exercise.id}. {exercise.name}
             </Link>
           </li>
         ))}
@@ -97,7 +87,7 @@ const Lesson: React.FC = () => {
 
       {/* Continue */}
       <Link
-        to="/exercise/1"
+        to="/exercises/1"
         className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded font-semibold"
       >
         ¡Continuá esta lección!

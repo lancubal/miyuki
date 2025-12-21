@@ -52,6 +52,7 @@ export abstract class Exercise {
   public number!: number;
 
   protected constructor(
+    public id: number,
     public readonly bibliothecaId: string,
     public readonly guide: Guide,
     public language: Language,
