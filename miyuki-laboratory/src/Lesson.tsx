@@ -28,8 +28,8 @@ const Lesson: React.FC = () => {
     <div className="max-w-5xl mx-auto p-6">
       {/* Breadcrumb */}
       <nav className="text-gray-600 mb-6 flex gap-2 items-center">
-        <span className="font-semibold text-blue-600">▲</span>
-        <Link to="/" className="hover:underline">Organización de prueba de contenido</Link>
+        <span className="font-semibold text-blue-600"></span>
+        <Link to="/" className="hover:underline">PdeP</Link>
         <span>/</span>
         <Link to="/chapters/4" className="hover:underline">4. Programación Funcional</Link>
         <span>/</span>
@@ -39,7 +39,7 @@ const Lesson: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Lección 1: Valores y Funciones</h1>
-        <div className="text-4xl font-bold">λ</div>
+        <div className="text-4xl font-bold"><i className="da da-haskell"></i></div>
       </div>
 
       {/* Intro */}
