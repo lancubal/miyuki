@@ -2,9 +2,8 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
-import { Exercise } from "./model/guide";
-import { SubmissionStatus } from "./model/submission";
-import { statusIcon } from "./helpers/statusIcon";
+import { Exercise } from "./model/guide"
+import { ExercisesList } from "./ExercisesList"
 
 
 const exercises: Partial<Exercise>[] = [
@@ -22,24 +21,19 @@ const exercises: Partial<Exercise>[] = [
   { id: 12, name: "Más composición" },
   { id: 13, name: "Los operadores son funciones" },
   { id: 14, name: '"Juguemos con strings"' },
-];
-
-function statusFor(_exercise: Partial<Exercise>): SubmissionStatus {
-  // TODO read from local storage. may use code from laboratory
-  return SubmissionStatus.Pending
-}
+]
 
 const Lesson: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-6">
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500 mb-6 flex gap-2 items-center">
+      <nav className="text-gray-600 mb-6 flex gap-2 items-center">
         <span className="font-semibold text-blue-600">▲</span>
         <Link to="/" className="hover:underline">Organización de prueba de contenido</Link>
         <span>/</span>
-        <Link to="/chapter/4" className="hover:underline">4. Programación Funcional</Link>
+        <Link to="/chapters/4" className="hover:underline">4. Programación Funcional</Link>
         <span>/</span>
-        <span className="text-gray-700">1. Valores y Funciones</span>
+        <span className="text-gray-600">1. Valores y Funciones</span>
       </nav>
 
       {/* Header */}
@@ -71,19 +65,7 @@ const Lesson: React.FC = () => {
 
       {/* Exercises */}
       <h2 className="text-2xl font-semibold mb-4">Ejercicios</h2>
-      <ul className="space-y-2 mb-8">
-        {exercises.map((exercise) => (
-          <li key={exercise.id} className="flex items-center gap-2">
-            <span className={`text-lg ${statusIcon(statusFor(exercise))}`}>●</span>
-            <Link
-              to={`/exercises/${exercise.id}`}
-              className="text-blue-600 hover:underline"
-            >
-              {exercise.id}. {exercise.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {<ExercisesList exercises={exercises} />}
 
       {/* Continue */}
       <Link
@@ -93,7 +75,7 @@ const Lesson: React.FC = () => {
         ¡Continuá esta lección!
       </Link>
     </div>
-  );
-};
+  )
+}
 
-export default Lesson;
+export default Lesson

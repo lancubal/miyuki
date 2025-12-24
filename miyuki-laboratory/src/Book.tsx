@@ -50,7 +50,7 @@ const Book: React.FC = () => {
           estudiaremos algunas de ellas. ¡Vamos!
         </p>
         <Link
-          to="/lesson/1"
+          to="/lessons/1"
           className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded font-semibold"
         >
           ¡Seguí aprendiendo!
@@ -67,7 +67,7 @@ const Book: React.FC = () => {
             // );
 
             return (
-              <div key={chapter.id} className="border rounded p-4">
+              <div key={chapter.id} className="p-4">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="text-xl font-semibold">
                     {chapter.id}.{' '}
@@ -85,7 +85,7 @@ const Book: React.FC = () => {
                         style={{ width: `${progress}%` }}
                       /> */}
                     </div>
-                    {/* <span className="text-sm font-semibold">
+                    {/* <span className="font-semibold">
                       {chapter.completed}/{chapter.total}
                     </span> */}
                   </div>
@@ -97,7 +97,7 @@ const Book: React.FC = () => {
                     alt=""
                     className="h-20 w-20 object-contain"
                   />
-                  <p className="text-gray-700">{chapter.description}</p>
+                  <p className="text-gray-600">{chapter.description}</p>
                 </div>
               </div>
             );

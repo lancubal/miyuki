@@ -1,15 +1,15 @@
 import React, { useState, useRef } from "react"
 import Editor, { OnMount } from "@monaco-editor/react"
-import { ProgressStatus } from "./ProgressStatus";
-import { ProgressBar } from "./ProgressBar";
-import { Link } from "react-router-dom";
+import { ProgressStatus } from "./ProgressStatus"
+import { ProgressBar } from "./ProgressBar"
+import { Link } from "react-router-dom"
 
 
 type ResultStatus = "success" | "error" | null
 
 
 const ExerciseResult: React.FC<{ status: ResultStatus }> = ({ status }) => {
-  if (!status) return null;
+  if (!status) return null
 
   if (status === "success") {
     return (
@@ -18,7 +18,7 @@ const ExerciseResult: React.FC<{ status: ResultStatus }> = ({ status }) => {
           ✔ ¡Muy bien! Tu solución pasó todas las pruebas
         </h4>
       </div>
-    );
+    )
   }
 
   return (
@@ -27,14 +27,14 @@ const ExerciseResult: React.FC<{ status: ResultStatus }> = ({ status }) => {
         ✖ Ups, no pudimos evaluar tu solución
       </h4>
       <div className="bg-white border rounded p-3 text-sm font-mono">
-        Timed out connecting to server: &lt;no reason&gt;
+        Timed out connecting to server: &ltno reason&gt
       </div>
       <a href="#" className="text-blue-500 text-sm mt-2 inline-block">
         💬 Ver consultas sobre este ejercicio
       </a>
     </div>
-  );
-};
+  )
+}
 
 const SubmitButton: React.FC<{ onClick: () => void; disabled?: boolean }> = ({
   onClick,
@@ -48,7 +48,7 @@ const SubmitButton: React.FC<{ onClick: () => void; disabled?: boolean }> = ({
   >
     <span className={disabled ? "animate-spin" : ""}>↻</span> Enviar
   </button>
-);
+)
 
 const NextButton: React.FC = () => (
   <a
@@ -57,7 +57,7 @@ const NextButton: React.FC = () => (
   >
     Siguiente Ejercicio: Combinando funciones →
   </a>
-);
+)
 
 const Assignment: React.FC<{ showHint: boolean, setShowHint: (value: boolean) => void }> = ({ showHint, setShowHint }) => {
   return (
@@ -84,30 +84,30 @@ const Assignment: React.FC<{ showHint: boolean, setShowHint: (value: boolean) =>
 }
 
 const Exercise: React.FC = () => {
-  const defaultCode = "areaRectangulo lado1 lado2 = lado1 * lado2";
+  const defaultCode = "areaRectangulo lado1 lado2 = lado1 * lado2"
 
-  const [code, setCode] = useState<string>(defaultCode);
-  const [showHint, setShowHint] = useState<boolean>(false);
-  const [fullscreen, setFullscreen] = useState<boolean>(false);
-  const [result, setResult] = useState<ResultStatus>(null);
-  const [processing, setProcessing] = useState<boolean>(false);
+  const [code, setCode] = useState<string>(defaultCode)
+  const [showHint, setShowHint] = useState<boolean>(false)
+  const [fullscreen, setFullscreen] = useState<boolean>(false)
+  const [result, setResult] = useState<ResultStatus>(null)
+  const [processing, setProcessing] = useState<boolean>(false)
 
-  const editorRef = useRef<any>(null);
+  const editorRef = useRef<any>(null)
 
   const handleEditorMount: OnMount = (editor) => {
-    editorRef.current = editor;
-  };
+    editorRef.current = editor
+  }
 
   const submit = () => {
-    setProcessing(true);
-    setResult(null);
+    setProcessing(true)
+    setResult(null)
 
     setTimeout(() => {
-      const success = Math.random() > 0.5;
-      setResult(success ? "success" : "error");
-      setProcessing(false);
-    }, 1500);
-  };
+      const success = Math.random() > 0.5
+      setResult(success ? "success" : "error")
+      setProcessing(false)
+    }, 1500)
+  }
 
   const currentProgressStatus: ProgressStatus = processing
     ? "processing"
@@ -115,26 +115,26 @@ const Exercise: React.FC = () => {
       ? "passed"
       : result === "error"
         ? "failed"
-        : "pending";
+        : "pending"
 
   return (
     <div
       className={`max-w-6xl mx-auto p-6 ${fullscreen ? "fixed inset-0 bg-white z-50 overflow-auto" : ""
         }`}
     >
-      <nav className="text-sm text-gray-500 mb-4 flex items-center gap-2">
-        <span className="font-semibold text-blue-600">▲</span>
-        <a href="#" className="hover:underline">
-          Organización de prueba de contenido
+      <nav className="text-gray-600 mb-4 flex items-center gap-2">
+        <span className="font-semibold text-blue-600"></span>
+        <a href="/" className="hover:underline">
+          PdeP
         </a>
         <span>/</span>
-        <a href="#" className="hover:underline">
+        <a href="/chapters/1" className="hover:underline">
           4. Programación Funcional
         </a>
         <span>/</span>
         <Link to="/lessons/1" className="hover:underline">1. Valores y Funciones</Link>
         <span>/</span>
-        <span className="text-gray-700">
+        <span className="text-gray-600">
           8. Múltiples parámetros
         </span>
       </nav>
@@ -197,7 +197,7 @@ const Exercise: React.FC = () => {
         {result && <NextButton />}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Exercise;
+export default Exercise

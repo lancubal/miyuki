@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { t } from "./i18n"
 import { Book } from "./model/book"
 import { Topic } from "./model/topic"
+import { ExercisesList } from "./ExercisesList"
 
 const book: Partial<Book> = {
   id: 1,
@@ -52,12 +53,12 @@ const Chapter: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-6 py-8">
       {/* Breadcrumb */}
-      <nav className="text-sm text-gray-500 mb-6 flex gap-2">
+      <nav className="text-gray-600 mb-6 flex gap-2">
         <Link to="/" className="hover:underline">
           {book.name}
         </Link>
         <span>/</span>
-        <span className="text-gray-700 font-medium">
+        <span className="text-gray-600 font-medium">
           {chapter.name}
         </span>
       </nav>
@@ -71,7 +72,7 @@ const Chapter: React.FC = () => {
           })}
         </h1>
 
-        <div className="bg-white border rounded p-4 flex gap-4">
+        <div className="bg-white p-4 flex gap-4">
           <img
             src={chapter.imageUrl}
             alt={chapter.name}
@@ -79,7 +80,7 @@ const Chapter: React.FC = () => {
           />
 
           <div
-            className="text-gray-700"
+            className="text-gray-600"
             dangerouslySetInnerHTML={{
               __html: chapter.descriptionHtml!,
             }}
@@ -105,18 +106,7 @@ const Chapter: React.FC = () => {
               </Link>
             </h3>
 
-            <ul className="space-y-2">
-              {lesson.exercises.map((exercise) => (
-                <li key={exercise.id} className="text-sm">
-                  <Link
-                    to={`/lessons/${lesson.id}/exercise/${exercise.id}`}
-                    className="hover:underline text-gray-700"
-                  >
-                    {exercise.id}. {exercise.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <ExercisesList exercises={lesson.exercises} />
           </div>
         ))}
       </section>
@@ -127,10 +117,10 @@ const Chapter: React.FC = () => {
           {t("appendix")}
         </h3>
 
-        <p className="text-gray-700">
+        <p className="text-gray-600">
           {t("appendixCta")}{" "}
           <Link
-            to={`/chapter/${chapter.id}/appendix`}
+            to={`/chapters/${chapter.id}/appendix`}
             className="text-blue-600 hover:underline"
           >
             {t("appendixLink")}
