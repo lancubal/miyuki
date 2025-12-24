@@ -2,11 +2,15 @@
 
 import React from "react"
 import { Link } from "react-router-dom"
-import { Exercise } from "./model/guide"
+import { Exercise, Guide } from "./model/guide"
 import { ExercisesList } from "./ExercisesList"
+import { Breadcrumbs } from "./Breadcrumbs"
+import { Book } from "./model/book"
+import { Topic } from "./model/topic"
+import { DeepPartial } from "./helpers/DeepPartial"
 
 
-const exercises: Partial<Exercise>[] = [
+const exercises: DeepPartial<Exercise>[] = [
   { id: 1, name: "Paradigmas... ¿para qué?" },
   { id: 2, name: "Los números" },
   { id: 3, name: "Valores y variables" },
@@ -23,23 +27,29 @@ const exercises: Partial<Exercise>[] = [
   { id: 14, name: '"Juguemos con strings"' },
 ]
 
+// TODO extract
+const book: DeepPartial<Book> = {
+  name: "PdeP"
+}
+
+const chapter: DeepPartial<Topic> = {
+  name: "Programación Funcional"
+}
+
+const lesson: DeepPartial<Guide> = {
+  name: "Valores y Funciones",
+  language: { name: "Haskell" }
+}
+
 const Lesson: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-6">
-      {/* Breadcrumb */}
-      <nav className="text-gray-600 mb-6 flex gap-2 items-center">
-        <span className="font-semibold text-blue-600"></span>
-        <Link to="/" className="hover:underline">PdeP</Link>
-        <span>/</span>
-        <Link to="/chapters/4" className="hover:underline">4. Programación Funcional</Link>
-        <span>/</span>
-        <span className="text-gray-600">1. Valores y Funciones</span>
-      </nav>
+      <Breadcrumbs book={book} chapter={chapter} lesson={lesson} />
 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Lección 1: Valores y Funciones</h1>
-        <div className="text-4xl font-bold"><i className="da da-haskell"></i></div>
+        <h1 className="text-3xl font-bold">Lección 1: {lesson.name}</h1>
+        <div className="text-4xl font-bold"><i className={`da da-${lesson.language?.name}`}></i></div>
       </div>
 
       {/* Intro */}

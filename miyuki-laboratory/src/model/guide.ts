@@ -51,13 +51,14 @@ export abstract class Exercise {
   public number!: number
 
   protected constructor(
-    public id: number,
+    public readonly id: number,
     public readonly bibliothecaId: string,
     public readonly guide: Guide,
-    public language: Language,
-    public name?: string,
-    public description?: string,
-    public tagList: string[] = []
+    public readonly language: Language,
+    public readonly name: string,
+    public readonly description: string,
+    public readonly hint: string,
+    public readonly tagList: string[] = []
   ) { }
 
   previous(): Exercise | undefined {

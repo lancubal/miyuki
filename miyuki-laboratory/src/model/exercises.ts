@@ -7,9 +7,22 @@ export abstract class Challenge extends Exercise {
     bibliothecaId: string,
     guide: Guide,
     language: Language,
+    name: string,
+    description: string,
+    hint: string,
+    tagList: string[] = [],
     public layout: string
   ) {
-    super(id, bibliothecaId, guide, language);
+    super(
+      id,
+      bibliothecaId,
+      guide,
+      language,
+      name,
+      description,
+      hint,
+      tagList
+    );
   }
 
   abstract console(): boolean;
@@ -21,12 +34,26 @@ export class Problem extends Challenge {
     bibliothecaId: string,
     guide: Guide,
     language: Language,
+    name: string,
+    description: string,
+    hint: string,
+    tagList: string[] = [],
     layout: string,
     public expectations: string[] = [],
     public test?: string,
     public manualEvaluation: boolean = false
   ) {
-    super(id, bibliothecaId, guide, language, layout);
+    super(
+      id,
+      bibliothecaId,
+      guide,
+      language,
+      name,
+      description,
+      hint,
+      tagList,
+      layout
+    );
   }
 
   console(): boolean {
@@ -62,10 +89,24 @@ export class Interactive extends Challenge {
     bibliothecaId: string,
     guide: Guide,
     language: Language,
+    name: string,
+    description: string,
+    hint: string,
+    tagList: string[] = [],
     layout: string,
     public goal?: string
   ) {
-    super(id, bibliothecaId, guide, language, layout);
+    super(
+      id,
+      bibliothecaId,
+      guide,
+      language,
+      name,
+      description,
+      hint,
+      tagList,
+      layout
+    );
   }
 
   solvable(): boolean {

@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Topic } from "./model/topic";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { Book as BookModel } from "./model/book";
+import { DeepPartial } from "./helpers/DeepPartial";
 
+const book: DeepPartial<BookModel> = {
+  name: "Paradigmas de programación",
+  description: "¿Creías que había una única forma de programar? En este recorrido estudiaremos algunas de ellas. ¡Vamos!"
+}
 
+// TODO model as chapters
 const chapters: Partial<Topic>[] = [
   {
     id: 1,
@@ -37,6 +45,9 @@ const chapters: Partial<Topic>[] = [
 const Book: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-6">
+      <Breadcrumbs book={book} />
+
+
       {/* Header */}
       <div className="text-center mb-12">
         <img
@@ -44,10 +55,9 @@ const Book: React.FC = () => {
           alt="Mumuki"
           className="mx-auto mb-4 h-20"
         />
-        <h1 className="text-3xl font-bold mb-2">Paradigmas de programación</h1>
+        <h1 className="text-3xl font-bold mb-2">{book.name}</h1>
         <p className="text-gray-600 mb-6">
-          ¿Creías que había una única forma de programar? En este recorrido
-          estudiaremos algunas de ellas. ¡Vamos!
+          {book.description}
         </p>
         <Link
           to="/lessons/1"

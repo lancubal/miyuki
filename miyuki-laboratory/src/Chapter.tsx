@@ -4,6 +4,7 @@ import { t } from "./i18n"
 import { Book } from "./model/book"
 import { Topic } from "./model/topic"
 import { ExercisesList } from "./ExercisesList"
+import { Breadcrumbs } from "./Breadcrumbs"
 
 const book: Partial<Book> = {
   id: 1,
@@ -52,16 +53,7 @@ const lessons = [
 const Chapter: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto px-6 py-8">
-      {/* Breadcrumb */}
-      <nav className="text-gray-600 mb-6 flex gap-2">
-        <Link to="/" className="hover:underline">
-          {book.name}
-        </Link>
-        <span>/</span>
-        <span className="text-gray-600 font-medium">
-          {chapter.name}
-        </span>
-      </nav>
+      <Breadcrumbs book={book} chapter={chapter} />
 
       {/* Header */}
       <header className="mb-8">
