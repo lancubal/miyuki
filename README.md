@@ -59,16 +59,6 @@ rails s
 
 In order to prepare database, follow the same instructions that with local installation.
 
-### Start the server from docker
-
-Again, this will start miyuki server **only**:
-
-```
-docker run -it --rm \
-           -p 3000:3000 \
-           -v ./db/development.sqlite3:/var/www/miyuki/db/production.sqlite3 \
-           flbulgarelli/miyuki-server
-```
 
 ## Prebuilt distributions
 
