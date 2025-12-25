@@ -36,28 +36,33 @@ In order to better express and enforce those beliefs, we have:
   distributed alongside verbatim and modified copies of this software. It also offers mechanisms for new forks to extending this mechanism. Please read it [here](./LICENSE).
 
 
-## Local installation
-
-### Install environment
+## Install
 
 ```
-rbenv install
-bundle install
+yarn install
 ```
 
-### Start the server
+## Start
 
-This will start miyuki server only - required runners need to be started following by their own.
-
-```bash
-rails s
+```
+yarn start
 ```
 
-## Docker Installation
+## Architecture
 
-### Prepare database
+* Content is 100% static, directly read from JSON files (TBD, may store in sqlite)
+* UI is built using react and typescript
+* Progress is stored in local storage
 
-In order to prepare database, follow the same instructions that with local installation.
+
+## TODO
+
+Nearly everything
+
+* Use same node version as packager
+* Integrate with packages
+* Read content from files
+* Migrate the chapter UI
 
 
 ## Prebuilt distributions
