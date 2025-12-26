@@ -1,9 +1,19 @@
+import { Breadcrumbs, BreadcrumbsProps } from "./Breadcrumbs";
+
 export function Main({
+  narrow,
   fullscreen,
-  children
-}: { fullscreen?: boolean, children: React.ReactNode }) {
+  children,
+  ...rest
+}: { fullscreen?: boolean, narrow?: boolean, children: React.ReactNode } & BreadcrumbsProps) {
   return (
-    <div className={`max-w-6xl mx-auto p-6 ${fullscreen ? "fixed inset-0 bg-white z-50 overflow-auto" : ""}`}>
-      {children}
-    </div>)
+    <main className={`p-6 ${fullscreen ? "fixed inset-0 bg-white z-50 overflow-auto" : ""}`}>
+      <div className="mx-auto max-w-6xl">
+        <Breadcrumbs {...rest} />
+      </div>
+      <div className={`mx-auto max-w-${narrow ? 4 : 6}xl`}>
+        {children}
+      </div>
+    </main>
+  )
 }

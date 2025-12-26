@@ -4,14 +4,14 @@ import { Exercise, Guide } from "./model/guide";
 import { Topic } from "./model/topic";
 import { DeepPartial } from "./helpers/DeepPartial";
 
-export function Breadcrumbs({ book, chapter, lesson, exercise }: {
+export type BreadcrumbsProps = {
   book: DeepPartial<Book>,
   chapter?: DeepPartial<Topic>,
   lesson?: DeepPartial<Guide>,
   exercise?: DeepPartial<Exercise>
-}) {
+}
 
-
+export function Breadcrumbs({ book, chapter, lesson, exercise }: BreadcrumbsProps) {
   return (
     <nav className="text-gray-600 mb-4 flex items-center gap-2">
       <span className="font-semibold text-blue-600"></span>

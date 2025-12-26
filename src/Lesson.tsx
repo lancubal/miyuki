@@ -66,8 +66,7 @@ const lesson: DeepPartial<Guide> = {
 const Lesson: React.FC = () => {
   const { t } = useTranslation()
   return (
-    <Main>
-      <Breadcrumbs book={book} chapter={chapter} lesson={lesson} />
+    <Main book={book} chapter={chapter} lesson={lesson}>
 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">

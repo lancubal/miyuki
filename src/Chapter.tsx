@@ -55,9 +55,7 @@ const Chapter: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Main>
-      <Breadcrumbs book={book} chapter={chapter} />
-
+    <Main book={book} chapter={chapter}>
       {/* Header */}
       <header className="mb-8">
         <h1 className="text-3xl font-bold mb-4">

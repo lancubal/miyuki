@@ -69,7 +69,7 @@
   "errored": "¡Ups! Tu solución no se puede ejecutar",
   "exercise": "Ejercicio",
   "exerciseCount": "ejercicios",
-  "exerciseNumber": "Ejercicio {{number}}",
+  "exerciseTitle": "Ejercicio {{number}}: {{name}}",
   "exercises": "Ejercicios",
   "exerciseSuccessRate": "Tasa de éxito en ejercicios",
   "exit": "Salir",

@@ -154,12 +154,9 @@ const Exercise: React.FC = () => {
         : "pending"
 
   return (
-    <Main fullscreen={fullscreen}>
-      <Breadcrumbs book={book} chapter={chapter} lesson={lesson} exercise={exercise} />
-
-
+    <Main fullscreen={fullscreen} book={book} chapter={chapter} lesson={lesson} exercise={exercise}>
       <h1 className="text-3xl font-bold mb-4">
-        Ejercicio 8: {exercise.name}
+        {t("exerciseTitle", { number: 8, name: exercise.name })}
       </h1>
 
       <ProgressBar

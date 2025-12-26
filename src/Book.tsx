@@ -47,10 +47,7 @@ const chapters: Partial<Topic>[] = [
 const Book: React.FC = () => {
   const { t } = useTranslation()
   return (
-    <Main>
-      <Breadcrumbs book={book} />
-
-
+    <Main narrow={true} book={book}>
       {/* Header */}
       <div className="text-center mb-12">
         <img
