@@ -9,6 +9,8 @@ import { Book } from "./model/book"
 import { Guide, Exercise as ExerciseModel } from "./model/guide"
 import { DeepPartial } from "./helpers/DeepPartial"
 import { Main } from "./Main"
+import { useTranslation } from "react-i18next"
+import { Problem } from "./model/exercises"
 
 // TODO extract
 const book: DeepPartial<Book> = {
@@ -24,24 +26,29 @@ const lesson: DeepPartial<Guide> = {
   language: { name: "Haskell" }
 }
 
-const exercise: DeepPartial<ExerciseModel> = {
+const exercise: DeepPartial<Problem> = {
   name: "Múltiples parámetros",
-  description: "¿Te imaginás cómo se puede escribir la función <code>areaRectangulo</code> que calcule el área de un rectángulo?",
-  hint: "El área de un rectángulo se calcula multiplicando base por altura."
+  descriptionHtml: "¿Te imaginás cómo se puede escribir la función <code>areaRectangulo</code> que calcule el área de un rectángulo?",
+  hint: "El área de un rectángulo se calcula multiplicando base por altura.",
+  defaultCode: "areaRectangulo lado1 lado2 = lado1 * lado2"
 }
 
+const nextExercise: DeepPartial<ExerciseModel> = {
+  name: "Combinando funciones",
+}
 
 type ResultStatus = "success" | "error" | null
 
 
 const ExerciseResult: React.FC<{ status: ResultStatus }> = ({ status }) => {
+  const { t } = useTranslation()
   if (!status) return null
 
   if (status === "success") {
     return (
       <div className="border-l-4 border-green-500 bg-green-50 p-4 mb-6">
         <h4 className="text-green-700 font-semibold">
-          ✔ ¡Muy bien! Tu solución pasó todas las pruebas
+          ✔ {t("passed")}
         </h4>
       </div>
     )
@@ -50,14 +57,11 @@ const ExerciseResult: React.FC<{ status: ResultStatus }> = ({ status }) => {
   return (
     <div className="border-l-4 border-red-500 bg-red-50 p-4 mb-6">
       <h4 className="text-red-700 font-semibold mb-2">
-        ✖ Ups, no pudimos evaluar tu solución
+        ✖ {t("aborted")}
       </h4>
       <div className="bg-white border rounded p-3 text-sm font-mono">
         Timed out connecting to server: &ltno reason&gt
       </div>
-      <a href="#" className="text-blue-600 text-sm mt-2 inline-block">
-        💬 Ver consultas sobre este ejercicio
-      </a>
     </div>
   )
 }
@@ -76,27 +80,34 @@ const SubmitButton: React.FC<{ onClick: () => void; disabled?: boolean }> = ({
   </button>
 )
 
-const NextButton: React.FC = () => (
-  <a
-    href="#"
-    className="block w-full mt-4 bg-pink-400 hover:bg-pink-500 text-white py-3 rounded font-semibold text-center"
-  >
-    Siguiente Ejercicio: Combinando funciones →
-  </a>
-)
+// TODO next should be generic, not just exercise
+function NextButton({ nextExercise }: { nextExercise: DeepPartial<ExerciseModel> }) {
+  const { t } = useTranslation()
+
+  return (
+    <a
+      href="#"
+      className="block w-full mt-4 bg-pink-400 hover:bg-pink-500 text-white py-3 rounded font-semibold text-center"
+    >
+      {t("navigationContinue", { kind: t("exercise"), name: nextExercise.name })}  →
+    </a>
+  )
+}
 
 const Assignment: React.FC<{ showHint: boolean, setShowHint: (value: boolean) => void }> = ({ showHint, setShowHint }) => {
+  const { t } = useTranslation()
   return (
     <div>
-      <p className="mb-4">
-        {exercise.description}
+      <p className="mb-4" dangerouslySetInnerHTML={{
+        __html: exercise.descriptionHtml!,
+      }}>
       </p>
 
       <button
         onClick={() => setShowHint(!showHint)}
         className="text-blue-600 flex items-center gap-2 mb-2"
       >
-        💡 ¡Dame una pista!
+        💡 {t("needAHint")}
       </button>
 
       {showHint && (
@@ -109,9 +120,9 @@ const Assignment: React.FC<{ showHint: boolean, setShowHint: (value: boolean) =>
 }
 
 const Exercise: React.FC = () => {
-  const defaultCode = "areaRectangulo lado1 lado2 = lado1 * lado2"
+  const { t } = useTranslation()
 
-  const [code, setCode] = useState<string>(defaultCode)
+  const [code, setCode] = useState<string>(exercise.defaultCode ?? "")
   const [showHint, setShowHint] = useState<boolean>(false)
   const [fullscreen, setFullscreen] = useState<boolean>(false)
   const [result, setResult] = useState<ResultStatus>(null)
@@ -171,7 +182,7 @@ const Exercise: React.FC = () => {
 
         <div className="border rounded">
           <div className="flex justify-between items-center border-b px-3 py-2">
-            <div className="font-semibold">✏️ Solución</div>
+            <div className="font-semibold">✏️ {t("solution")}</div>
             <div className="flex gap-3 text-gray-600">
               <button onClick={() => setFullscreen(!fullscreen)} title="Pantalla completa">⛶</button>
               <button
@@ -202,7 +213,7 @@ const Exercise: React.FC = () => {
 
       <div className="mt-8">
         <ExerciseResult status={result} />
-        {result && <NextButton />}
+        {result && <NextButton nextExercise={nextExercise} />}
       </div>
     </Main>
   )

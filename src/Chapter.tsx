@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { t } from "./i18n"
 import { Book } from "./model/book"
 import { Topic } from "./model/topic"
 import { ExercisesList } from "./ExercisesList"
 import { Breadcrumbs } from "./Breadcrumbs"
 import { Main } from "./Main"
+import { useTranslation } from 'react-i18next';
 
 const book: Partial<Book> = {
   id: 1,
@@ -52,6 +52,8 @@ const lessons = [
 
 
 const Chapter: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Main>
       <Breadcrumbs book={book} chapter={chapter} />
@@ -59,7 +61,7 @@ const Chapter: React.FC = () => {
       {/* Header */}
       <header className="mb-8">
         <h1 className="text-3xl font-bold mb-4">
-          {t("chaptername", {
+          {t("chapterTitle", {
             number: chapter.id,
             name: chapter.name,
           })}
@@ -111,7 +113,7 @@ const Chapter: React.FC = () => {
         </h3>
 
         <p className="text-gray-600">
-          {t("appendixCta")}{" "}
+          {t("appendixTeaser")}{" "}
           <Link
             to={`/chapters/${chapter.id}/appendix`}
             className="text-blue-600 hover:underline"

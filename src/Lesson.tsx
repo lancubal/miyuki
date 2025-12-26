@@ -9,6 +9,7 @@ import { Book } from "./model/book"
 import { Topic } from "./model/topic"
 import { DeepPartial } from "./helpers/DeepPartial"
 import { Main } from "./Main"
+import { useTranslation } from "react-i18next"
 
 
 const exercises: DeepPartial<Exercise>[] = [
@@ -37,24 +38,11 @@ const chapter: DeepPartial<Topic> = {
   name: "Programación Funcional"
 }
 
+// TODO refactor, use Lesson
 const lesson: DeepPartial<Guide> = {
   name: "Valores y Funciones",
-  language: { name: "Haskell" }
-}
-
-const Lesson: React.FC = () => {
-  return (
-    <Main>
-      <Breadcrumbs book={book} chapter={chapter} lesson={lesson} />
-
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Lección 1: {lesson.name}</h1>
-        <div className="text-4xl font-bold"><i className={`da da-${lesson.language?.name}`}></i></div>
-      </div>
-
-      {/* Intro */}
-      <div className="prose max-w-none mb-10">
+  language: { name: "Haskell" },
+  descriptionHtml: `
         <p>¡Hola!</p>
         <p>
           El paradigma funcional es una forma de resolver problemas de programación bastante antigua:
@@ -72,10 +60,30 @@ const Lesson: React.FC = () => {
         <p>
           ¡Empecemos a programar en <em>funcional</em> usando Haskell!
         </p>
+  `
+}
+
+const Lesson: React.FC = () => {
+  const { t } = useTranslation()
+  return (
+    <Main>
+      <Breadcrumbs book={book} chapter={chapter} lesson={lesson} />
+
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        {/* TODO use number from model */}
+        <h1 className="text-3xl font-bold">{t("lessonTitle", { number: 1, name: lesson.name })}</h1>
+        <div className="text-4xl font-bold"><i className={`da da-${lesson.language?.name}`}></i></div>
+      </div>
+
+      {/* Intro */}
+      <div className="prose max-w-none mb-10" dangerouslySetInnerHTML={{
+        __html: lesson.descriptionHtml!,
+      }} >
       </div>
 
       {/* Exercises */}
-      <h2 className="text-2xl font-semibold mb-4">Ejercicios</h2>
+      <h2 className="text-2xl font-semibold mb-4">{t("exercises")}</h2>
       {<ExercisesList exercises={exercises} />}
 
       {/* Continue */}
@@ -83,7 +91,7 @@ const Lesson: React.FC = () => {
         to="/exercises/1"
         className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded font-semibold"
       >
-        ¡Continuá esta lección!
+        {t("continueLesson")}
       </Link>
     </Main>
   )

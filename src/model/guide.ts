@@ -85,6 +85,11 @@ export abstract class Exercise {
     }
   }
 
+  get descriptionHtml(): string {
+    // TODO convert from markdown here
+    return this.description ?? ""
+  }
+
   static fromResource(resource: Record<string, unknown>) {
     // TODO import from guide json
   }

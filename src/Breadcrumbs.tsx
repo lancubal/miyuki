@@ -24,9 +24,9 @@ export function Breadcrumbs({ book, chapter, lesson, exercise }: {
       {chapter && (
         <>
           <span>/</span>
-          <a href={`/chapters/${chapter.id}`} className="hover:underline">
+          <Link to={`/chapters/${chapter.id}`} className="hover:underline">
             1. {chapter.name}
-          </a>
+          </Link>
         </>
       )}
 

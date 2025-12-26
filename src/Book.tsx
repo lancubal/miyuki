@@ -5,6 +5,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { Book as BookModel } from "./model/book";
 import { DeepPartial } from "./helpers/DeepPartial";
 import { Main } from "./Main";
+import { useTranslation } from "react-i18next";
 
 const book: DeepPartial<BookModel> = {
   name: "PdeP",
@@ -44,6 +45,7 @@ const chapters: Partial<Topic>[] = [
 ];
 
 const Book: React.FC = () => {
+  const { t } = useTranslation()
   return (
     <Main>
       <Breadcrumbs book={book} />
@@ -64,13 +66,13 @@ const Book: React.FC = () => {
           to="/lessons/1"
           className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded font-semibold"
         >
-          ¡Seguí aprendiendo!
+          {t("keepLearning")}
         </Link>
       </div>
 
       {/* Chapters */}
       <section>
-        <h2 className="text-2xl font-semibold mb-6">Capítulos</h2>
+        <h2 className="text-2xl font-semibold mb-6">{t("chapters")}</h2>
         <div className="space-y-8">
           {chapters.map((chapter) => {
             // const progress = Math.round(
