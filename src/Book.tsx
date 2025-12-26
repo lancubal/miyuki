@@ -4,9 +4,10 @@ import { Topic } from "./model/topic";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { Book as BookModel } from "./model/book";
 import { DeepPartial } from "./helpers/DeepPartial";
+import { Main } from "./Main";
 
 const book: DeepPartial<BookModel> = {
-  name: "Paradigmas de programación",
+  name: "PdeP",
   description: "¿Creías que había una única forma de programar? En este recorrido estudiaremos algunas de ellas. ¡Vamos!"
 }
 
@@ -44,7 +45,7 @@ const chapters: Partial<Topic>[] = [
 
 const Book: React.FC = () => {
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <Main>
       <Breadcrumbs book={book} />
 
 
@@ -114,7 +115,7 @@ const Book: React.FC = () => {
           })}
         </div>
       </section>
-    </div>
+    </Main>
   );
 };
 

@@ -8,6 +8,7 @@ import { Breadcrumbs } from "./Breadcrumbs"
 import { Book } from "./model/book"
 import { Topic } from "./model/topic"
 import { DeepPartial } from "./helpers/DeepPartial"
+import { Main } from "./Main"
 
 
 const exercises: DeepPartial<Exercise>[] = [
@@ -43,7 +44,7 @@ const lesson: DeepPartial<Guide> = {
 
 const Lesson: React.FC = () => {
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <Main>
       <Breadcrumbs book={book} chapter={chapter} lesson={lesson} />
 
       {/* Header */}
@@ -84,7 +85,7 @@ const Lesson: React.FC = () => {
       >
         ¡Continuá esta lección!
       </Link>
-    </div>
+    </Main>
   )
 }
 

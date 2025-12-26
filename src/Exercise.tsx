@@ -8,6 +8,7 @@ import { Topic } from "./model/topic"
 import { Book } from "./model/book"
 import { Guide, Exercise as ExerciseModel } from "./model/guide"
 import { DeepPartial } from "./helpers/DeepPartial"
+import { Main } from "./Main"
 
 // TODO extract
 const book: DeepPartial<Book> = {
@@ -142,10 +143,7 @@ const Exercise: React.FC = () => {
         : "pending"
 
   return (
-    <div
-      className={`max-w-6xl mx-auto p-6 ${fullscreen ? "fixed inset-0 bg-white z-50 overflow-auto" : ""
-        }`}
-    >
+    <Main fullscreen={fullscreen}>
       <Breadcrumbs book={book} chapter={chapter} lesson={lesson} exercise={exercise} />
 
 
@@ -206,7 +204,7 @@ const Exercise: React.FC = () => {
         <ExerciseResult status={result} />
         {result && <NextButton />}
       </div>
-    </div>
+    </Main>
   )
 }
 
