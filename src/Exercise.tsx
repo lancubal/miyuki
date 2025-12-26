@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react"
 import Editor, { OnMount } from "@monaco-editor/react"
 import { ProgressStatus } from "./ProgressStatus"
 import { ProgressBar } from "./ProgressBar"
-import { Link } from "react-router-dom"
-import { Breadcrumbs } from "./Breadcrumbs"
 import { Topic } from "./model/topic"
 import { Book } from "./model/book"
 import { Guide, Exercise as ExerciseModel } from "./model/guide"
@@ -181,14 +179,14 @@ const Exercise: React.FC = () => {
           <div className="flex justify-between items-center border-b px-3 py-2">
             <div className="font-semibold">✏️ {t("solution")}</div>
             <div className="flex gap-3 text-gray-600">
-              <button onClick={() => setFullscreen(!fullscreen)} title="Pantalla completa">⛶</button>
+              <button onClick={() => setFullscreen(!fullscreen)} title={t("fullscreen")}>⛶</button>
               <button
                 onClick={() => editorRef.current?.getAction("editor.action.formatDocument")?.run()}
-                title="Dar formato"
+                title={t("format")}
               >
                 ⇥
               </button>
-              <button onClick={() => setCode(defaultCode)} title="Reiniciar">↺</button>
+              <button onClick={() => setCode(exercise.defaultCode ?? "")} title={t("restart")}>↺</button>
             </div>
           </div>
 
