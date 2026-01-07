@@ -10,6 +10,7 @@ import { Topic } from "./model/topic"
 import { DeepPartial } from "./helpers/DeepPartial"
 import { Main } from "./Main"
 import { useTranslation } from "react-i18next"
+import { ContentChildrenTitle, ContentTitle } from "./Title"
 
 
 const exercises: DeepPartial<Exercise>[] = [
@@ -71,7 +72,7 @@ const Lesson: React.FC = () => {
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
         {/* TODO use number from model */}
-        <h1 className="text-3xl font-bold">{t("lessonTitle", { number: 1, name: lesson.name })}</h1>
+        <ContentTitle>{t("lessonTitle", { number: 1, name: lesson.name })}</ContentTitle>
         <div className="text-4xl font-bold"><i className={`da da-${lesson.language?.name}`}></i></div>
       </div>
 
@@ -82,7 +83,7 @@ const Lesson: React.FC = () => {
       </div>
 
       {/* Exercises */}
-      <h2 className="text-2xl font-semibold mb-4">{t("exercises")}</h2>
+      <ContentChildrenTitle>{t("exercises")}</ContentChildrenTitle>
       {<ExercisesList exercises={exercises} />}
 
       {/* Continue */}

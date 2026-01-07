@@ -6,6 +6,7 @@ import { ExercisesList } from "./ExercisesList"
 import { Breadcrumbs } from "./Breadcrumbs"
 import { Main } from "./Main"
 import { useTranslation } from 'react-i18next';
+import { ContentChildrenTitle, ContentChildTitle, ContentTitle } from "./Title"
 
 const book: Partial<Book> = {
   id: 1,
@@ -58,12 +59,12 @@ const Chapter: React.FC = () => {
     <Main book={book} chapter={chapter}>
       {/* Header */}
       <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-4">
+        <ContentTitle>
           {t("chapterTitle", {
             number: chapter.id,
             name: chapter.name,
           })}
-        </h1>
+        </ContentTitle>
 
         <div className="bg-white p-4 flex gap-4">
           <img
@@ -83,13 +84,13 @@ const Chapter: React.FC = () => {
 
       {/* Lessons */}
       <section>
-        <h2 className="text-xl font-semibold mb-4">
+        <ContentChildTitle>
           {t("lessons")}
-        </h2>
+        </ContentChildTitle>
 
         {lessons.map((lesson) => (
           <div key={lesson.id} className="mb-8">
-            <h3 className="text-lg font-semibold mb-2">
+            <ContentChildTitle>
               {lesson.id}.{" "}
               <Link
                 to={`/lessons/${lesson.id}`}
@@ -97,7 +98,7 @@ const Chapter: React.FC = () => {
               >
                 {lesson.name}
               </Link>
-            </h3>
+            </ContentChildTitle>
 
             <ExercisesList exercises={lesson.exercises} />
           </div>
@@ -106,9 +107,9 @@ const Chapter: React.FC = () => {
 
       {/* Appendix */}
       <section className="mt-10">
-        <h3 className="text-lg font-semibold mb-2">
+        <ContentChildrenTitle>
           {t("appendix")}
-        </h3>
+        </ContentChildrenTitle>
 
         <p className="text-gray-600">
           {t("appendixTeaser")}{" "}

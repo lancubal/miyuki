@@ -9,6 +9,7 @@ import { DeepPartial } from "./helpers/DeepPartial"
 import { Main } from "./Main"
 import { useTranslation } from "react-i18next"
 import { Problem } from "./model/exercises"
+import { ContentTitle } from "./Title"
 
 // TODO extract
 const book: DeepPartial<Book> = {
@@ -153,9 +154,9 @@ const Exercise: React.FC = () => {
 
   return (
     <Main fullscreen={fullscreen} book={book} chapter={chapter} lesson={lesson} exercise={exercise}>
-      <h1 className="text-3xl font-bold mb-4">
+      <ContentTitle>
         {t("exerciseTitle", { number: 8, name: exercise.name })}
-      </h1>
+      </ContentTitle>
 
       <ProgressBar
         items={[

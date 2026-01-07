@@ -6,6 +6,7 @@ import { Book as BookModel } from "./model/book";
 import { DeepPartial } from "./helpers/DeepPartial";
 import { Main } from "./Main";
 import { useTranslation } from "react-i18next";
+import { ContentChildrenTitle, ContentChildTitle, ContentTitle } from "./Title";
 
 const book: DeepPartial<BookModel> = {
   name: "PdeP",
@@ -55,7 +56,7 @@ const Book: React.FC = () => {
           alt="Mumuki"
           className="mx-auto mb-4 h-20"
         />
-        <h1 className="text-3xl font-bold mb-2">{book.name}</h1>
+        <ContentTitle>{book.name}</ContentTitle>
         <p className="text-gray-600 mb-6">
           {book.description}
         </p>
@@ -69,7 +70,7 @@ const Book: React.FC = () => {
 
       {/* Chapters */}
       <section>
-        <h2 className="text-2xl font-semibold mb-6">{t("chapters")}</h2>
+        <ContentChildTitle>{t("chapters")}</ContentChildTitle>
         <div className="space-y-8">
           {chapters.map((chapter) => {
             // const progress = Math.round(
@@ -79,7 +80,7 @@ const Book: React.FC = () => {
             return (
               <div key={chapter.id} className="p-4">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-xl font-semibold">
+                  <ContentChildrenTitle>
                     {chapter.id}.{' '}
                     <Link
                       to={`chapters/${chapter.id}`}
@@ -87,7 +88,7 @@ const Book: React.FC = () => {
                     >
                       {chapter.name}
                     </Link>
-                  </h3>
+                  </ContentChildrenTitle>
                   <div className="flex items-center gap-2 w-1/3">
                     <div className="flex-1 h-2 bg-gray-200 rounded">
                       {/* <div
