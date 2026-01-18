@@ -24,7 +24,7 @@ export function Breadcrumbs({ book, chapter, lesson, exercise }: {
       {chapter && (
         <>
           <span>/</span>
-          <a href={`/chapters/${chapter.id}`} className="hover:underline">
+          <a href={`#/chapters/${chapter.id}`} className="hover:underline">
             1. {chapter.name}
           </a>
         </>
@@ -33,7 +33,7 @@ export function Breadcrumbs({ book, chapter, lesson, exercise }: {
       {lesson && (
         <>
           <span>/</span>
-          <Link to={`/lessons/${lesson.id}`} className="hover:underline">
+          <Link to={`#/lessons/${lesson.id}`} className="hover:underline">
             1. {lesson.name}
           </Link>
         </>
@@ -42,7 +42,7 @@ export function Breadcrumbs({ book, chapter, lesson, exercise }: {
       {exercise && (
         <>
           <span>/</span>
-          <Link to={`/exercises/${exercise.id}`} className="hover:underline">
+          <Link to={`#/exercises/${exercise.id}`} className="hover:underline">
             1. {exercise.name}
           </Link>
         </>
