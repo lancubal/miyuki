@@ -7,7 +7,7 @@ yarn install
 ## Start
 
 ```
-yarn start
+yarn run dev
 ```
 
 ## Architecture
