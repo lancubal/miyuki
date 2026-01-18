@@ -7,8 +7,16 @@ yarn install
 ## Start
 
 ```
-yarn start
+yarn run dev
 ```
+
+## Package
+
+```
+yarn run build
+```
+
+You can find the installers on the `out` folder.
 
 ## Architecture
 
@@ -22,6 +30,5 @@ yarn start
 Nearly everything
 
 * Use same node version as packager
-* Integrate with packages
 * Read content from files
 * Migrate the chapter UI
